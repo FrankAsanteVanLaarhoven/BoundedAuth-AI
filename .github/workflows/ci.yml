@@ -1,0 +1,47 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  core:
+    name: core, conformance, receipts (race detector)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+      - name: Test under the race detector
+        run: go test ./... -race
+      - name: The conformance suite fails deliberately broken stores
+        run: go test ./conformance/... -race -count=3
+      - name: Test vectors reproduce in a second language (from SPEC alone)
+        run: python3 testdata/verify_vectors.py
+
+  postgres:
+    name: PostgreSQL reference store (real database)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: boundedauth
+          POSTGRES_PASSWORD: boundedauth_ci
+          POSTGRES_DB: boundedauth_ref
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd "pg_isready -U boundedauth -d boundedauth_ref"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      BOUNDEDAUTH_TEST_DATABASE_URL: postgres://boundedauth:boundedauth_ci@localhost:5433/boundedauth_ref?sslmode=disable
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+      - name: The reference store satisfies the contract on a real database
+        working-directory: postgres
+        run: go test ./... -race

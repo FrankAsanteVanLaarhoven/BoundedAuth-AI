@@ -1,0 +1,282 @@
+{
+  "dataset": {
+    "name": "IEEE-CIS Fraud Detection (train_transaction.csv)",
+    "path": "/home/favl/cashaegis-control-plane/data/raw/ieee_cis_fraud/train_transaction.csv",
+    "rowsUsed": 50000,
+    "distinctPayers": 5446,
+    "fraudRateInSample": 0.02714,
+    "meanAmountMinor": 12812.32528,
+    "maxAmountMinor": 482995
+  },
+  "environment": {
+    "database": "PostgreSQL",
+    "goVersion": "1.24.5",
+    "note": "single host, database and load generator on the same machine; absolute throughput is therefore not a capacity claim"
+  },
+  "results": {
+    "adversarial": {
+      "credentialsBurnedByARepointingAttempt": 0,
+      "replayAccepted": 0,
+      "replayAttempts": 5000,
+      "replayLatency": {
+        "n": 5000,
+        "p50Ms": 0.507507,
+        "p95Ms": 1.570687,
+        "p99Ms": 1.9705,
+        "maxMs": 2.772311,
+        "meanMs": 0.5045868848,
+        "perSecond": 1980.6870973354985,
+        "elapsedSeconds": 2.524376519
+      },
+      "replayRefused": 5000,
+      "repointAccepted": 0,
+      "repointAttempts": 1000,
+      "repointRefused": 1000
+    },
+    "contention": {
+      "busiestTenPayers": {
+        "n": 4000,
+        "p50Ms": 3.213337,
+        "p95Ms": 4.956953,
+        "p99Ms": 6.35749,
+        "maxMs": 7.528049,
+        "meanMs": 3.4144733460000003,
+        "perSecond": 8765.016168178905,
+        "elapsedSeconds": 0.456359683
+      },
+      "cohortSize": 4000,
+      "controlDetectsContention": true,
+      "controlSharedRow": {
+        "n": 4000,
+        "p50Ms": 34.724951,
+        "p95Ms": 156.934632,
+        "p99Ms": 258.99125,
+        "maxMs": 487.882585,
+        "meanMs": 52.107232061000005,
+        "perSecond": 610.0324081135136,
+        "elapsedSeconds": 6.557028687
+      },
+      "distinctPayers": {
+        "n": 4000,
+        "p50Ms": 2.177222,
+        "p95Ms": 4.98568,
+        "p99Ms": 6.606481,
+        "maxMs": 9.959664,
+        "meanMs": 2.721348854,
+        "perSecond": 10971.47633935573,
+        "elapsedSeconds": 0.364581746
+      },
+      "note": "consumption records are keyed by the credential identifier, not by payer, so two payments from one payer touch different rows. The shared-row control establishes that this measurement is sensitive to contention that does exist; without it a null result would be uninterpretable.",
+      "workers": 32
+    },
+    "failureInjection": {
+      "credentialsLost": 0,
+      "credentialsStillSpendable": 667,
+      "effectsFailed": 667
+    },
+    "fullPathByConcurrency": {
+      "1": {
+        "medianPerSecond": 551.3966718349454,
+        "repeats": 3,
+        "runs": [
+          {
+            "n": 50000,
+            "p50Ms": 1.618624,
+            "p95Ms": 2.773643,
+            "p99Ms": 3.281756,
+            "maxMs": 15.505008,
+            "meanMs": 1.76545069292,
+            "perSecond": 536.8392404719747,
+            "elapsedSeconds": 93.13775192
+          },
+          {
+            "n": 50000,
+            "p50Ms": 1.609808,
+            "p95Ms": 2.731066,
+            "p99Ms": 3.272815,
+            "maxMs": 6.770465,
+            "meanMs": 1.7124888440000001,
+            "perSecond": 554.52391271264,
+            "elapsedSeconds": 90.167437064
+          },
+          {
+            "n": 50000,
+            "p50Ms": 1.611621,
+            "p95Ms": 2.701754,
+            "p99Ms": 3.313601,
+            "maxMs": 6.934356,
+            "meanMs": 1.7220353855200001,
+            "perSecond": 551.3966718349454,
+            "elapsedSeconds": 90.678820809
+          }
+        ],
+        "spreadFraction": 0.0320725045035438
+      },
+      "128": {
+        "medianPerSecond": 21186.044220647917,
+        "repeats": 3,
+        "runs": [
+          {
+            "n": 50000,
+            "p50Ms": 5.427902,
+            "p95Ms": 8.221356,
+            "p99Ms": 11.03685,
+            "maxMs": 26.092579,
+            "meanMs": 5.79287838858,
+            "perSecond": 21186.044220647917,
+            "elapsedSeconds": 2.360044163
+          },
+          {
+            "n": 50000,
+            "p50Ms": 6.491764,
+            "p95Ms": 9.05128,
+            "p99Ms": 11.278943,
+            "maxMs": 20.131176,
+            "meanMs": 6.517645808999999,
+            "perSecond": 18833.560763583624,
+            "elapsedSeconds": 2.654835197
+          },
+          {
+            "n": 50000,
+            "p50Ms": 5.320501,
+            "p95Ms": 7.891951,
+            "p99Ms": 9.798572,
+            "maxMs": 15.611857,
+            "meanMs": 5.540856149580001,
+            "perSecond": 22205.180535678617,
+            "elapsedSeconds": 2.251726795
+          }
+        ],
+        "spreadFraction": 0.15914343125976357
+      },
+      "32": {
+        "medianPerSecond": 9898.828957269488,
+        "repeats": 3,
+        "runs": [
+          {
+            "n": 50000,
+            "p50Ms": 3.039489,
+            "p95Ms": 4.073968,
+            "p99Ms": 4.729759,
+            "maxMs": 21.233388,
+            "meanMs": 2.82949126592,
+            "perSecond": 10659.469888334477,
+            "elapsedSeconds": 4.690664782
+          },
+          {
+            "n": 50000,
+            "p50Ms": 3.124695,
+            "p95Ms": 4.29109,
+            "p99Ms": 5.154371,
+            "maxMs": 7.824311,
+            "meanMs": 3.05705406412,
+            "perSecond": 9852.57891597966,
+            "elapsedSeconds": 5.07481345
+          },
+          {
+            "n": 50000,
+            "p50Ms": 3.112782,
+            "p95Ms": 4.376841,
+            "p99Ms": 5.327153,
+            "maxMs": 15.663798,
+            "meanMs": 3.04059272986,
+            "perSecond": 9898.828957269488,
+            "elapsedSeconds": 5.051102531
+          }
+        ],
+        "spreadFraction": 0.08151378065404931
+      },
+      "64": {
+        "medianPerSecond": 20984.84856538579,
+        "repeats": 3,
+        "runs": [
+          {
+            "n": 50000,
+            "p50Ms": 2.261094,
+            "p95Ms": 4.094047,
+            "p99Ms": 5.087851,
+            "maxMs": 59.768651,
+            "meanMs": 2.7392006342000004,
+            "perSecond": 21948.328581136833,
+            "elapsedSeconds": 2.278077796
+          },
+          {
+            "n": 50000,
+            "p50Ms": 3.107031,
+            "p95Ms": 4.28712,
+            "p99Ms": 5.209061,
+            "maxMs": 16.743588,
+            "meanMs": 3.034640447,
+            "perSecond": 19740.656789781217,
+            "elapsedSeconds": 2.532843792
+          },
+          {
+            "n": 50000,
+            "p50Ms": 2.987453,
+            "p95Ms": 4.290192,
+            "p99Ms": 5.552819,
+            "maxMs": 8.795483,
+            "meanMs": 2.8584330200199997,
+            "perSecond": 20984.84856538579,
+            "elapsedSeconds": 2.382671471
+          }
+        ],
+        "spreadFraction": 0.10520313189188985
+      },
+      "8": {
+        "medianPerSecond": 2710.8013694961146,
+        "repeats": 3,
+        "runs": [
+          {
+            "n": 50000,
+            "p50Ms": 3.052467,
+            "p95Ms": 4.021497,
+            "p99Ms": 4.25663,
+            "maxMs": 12.093226,
+            "meanMs": 2.7990490012,
+            "perSecond": 2710.8013694961146,
+            "elapsedSeconds": 18.444730242
+          },
+          {
+            "n": 50000,
+            "p50Ms": 3.079969,
+            "p95Ms": 4.075594,
+            "p99Ms": 4.266439,
+            "maxMs": 13.359147,
+            "meanMs": 2.86661819384,
+            "perSecond": 2643.23889906954,
+            "elapsedSeconds": 18.916186508
+          },
+          {
+            "n": 50000,
+            "p50Ms": 3.013837,
+            "p95Ms": 4.005123,
+            "p99Ms": 4.255221,
+            "maxMs": 8.015901,
+            "meanMs": 2.75104331868,
+            "perSecond": 2759.966613070277,
+            "elapsedSeconds": 18.116161175
+          }
+        ],
+        "spreadFraction": 0.043060223930178505
+      }
+    },
+    "verifyOnly": {
+      "n": 20000,
+      "p50Ms": 0.031286,
+      "p95Ms": 0.03354,
+      "p99Ms": 0.050136,
+      "maxMs": 0.279484,
+      "meanMs": 0.0318869977,
+      "perSecond": 31337.230461606196,
+      "elapsedSeconds": 0.638218493
+    }
+  },
+  "notMeasured": [
+    "Fraud detection accuracy. Bounded authority is not a detector; the labels in this dataset are not used for scoring anything.",
+    "Whether bounded authority would have prevented the fraud in this dataset. It structurally prevents payments initiated without the account holder; it does nothing about payments the account holder was deceived into authorising. The labels do not separate those, so no prevention rate is computable.",
+    "Payee-side contention. The dataset has no payee, so payees here are synthesised.",
+    "Network latency between service and database.",
+    "Behaviour under database failover or replication lag."
+  ]
+}

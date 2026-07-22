@@ -1,0 +1,13 @@
+# Datasets are licensed under competition terms and are not redistributed.
+# The workload study verifies its input by sha256 instead.
+*.csv
+*.csv.gz
+bench/bench
+
+# Go build/test artifacts
+*.test
+*.out
+/tmp/
+
+# Local env
+.env

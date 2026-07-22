@@ -1,0 +1,157 @@
+{
+  "note": "Test vectors for bounded-authority. The signing key is a published test key and must never be used in a deployment. An implementation in another language agrees with this one when it reproduces every digest, the credential string, and the receipt content hash.",
+  "version": "bounded-authority/1",
+  "signingKeySeedHex": "9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60",
+  "publicKeyHex": "d75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a",
+  "bindings": [
+    {
+      "name": "empty",
+      "binding": {
+        "amountMinor": 0,
+        "context": "",
+        "currency": "",
+        "feeMinor": 0,
+        "payee": "",
+        "payer": "",
+        "reference": ""
+      },
+      "digest": "348d080d83962c297b69bd1fdc5f6c348e868c576e958e20ed2f79b9682b1483"
+    },
+    {
+      "name": "typical",
+      "binding": {
+        "amountMinor": 50000,
+        "context": "",
+        "currency": "GHS",
+        "feeMinor": 250,
+        "payee": "wallet:bob",
+        "payer": "wallet:alice",
+        "reference": "txn-0001"
+      },
+      "digest": "bb6a5d9109501e24d6535273a819ffcf393f45398ab979b80ba683f2ed30b244"
+    },
+    {
+      "name": "boundary-a",
+      "binding": {
+        "amountMinor": 0,
+        "context": "",
+        "currency": "GHS",
+        "feeMinor": 0,
+        "payee": "bob",
+        "payer": "alice",
+        "reference": "r"
+      },
+      "digest": "c8c90f77c73a17fc5161a548c50c02270a2404eef0dc4ca869c2e4739659c1e3"
+    },
+    {
+      "name": "boundary-b",
+      "binding": {
+        "amountMinor": 0,
+        "context": "",
+        "currency": "GHS",
+        "feeMinor": 0,
+        "payee": "cebob",
+        "payer": "ali",
+        "reference": "r"
+      },
+      "digest": "33715ff4b3556093a55d1ac59b0ba6764cca9a221e1ed1eef9a20a228556e6b6"
+    },
+    {
+      "name": "zero-fee",
+      "binding": {
+        "amountMinor": 1,
+        "context": "",
+        "currency": "GHS",
+        "feeMinor": 0,
+        "payee": "b",
+        "payer": "a",
+        "reference": "r"
+      },
+      "digest": "511a687eff41b866949769c93e0f855dfab6c0380746299de5486051f3364ada"
+    },
+    {
+      "name": "unicode",
+      "binding": {
+        "amountMinor": 100,
+        "context": "",
+        "currency": "GHS",
+        "feeMinor": 0,
+        "payee": "wallet:Ọ̀bí",
+        "payer": "wallet:Ámà",
+        "reference": "ref-é"
+      },
+      "digest": "4a8f4a4eccba404c5aece5365fd8508d06b7a86ec009666faade2155beceaae7"
+    },
+    {
+      "name": "with-context",
+      "binding": {
+        "amountMinor": 100,
+        "context": "{\"mandate\":\"m-1\"}",
+        "currency": "GHS",
+        "feeMinor": 0,
+        "payee": "b",
+        "payer": "a",
+        "reference": "r"
+      },
+      "digest": "f082011a73fa9c27922b237a2fb24121c983bc80cb0385dc8284be9c938b26bc"
+    },
+    {
+      "name": "max-amount",
+      "binding": {
+        "amountMinor": 9223372036854775807,
+        "context": "",
+        "currency": "GHS",
+        "feeMinor": 0,
+        "payee": "b",
+        "payer": "a",
+        "reference": "r"
+      },
+      "digest": "4e25a2cf0320d9dc7b362e8243e8db5633a8bc637906a445488a348150a6b37c"
+    },
+    {
+      "name": "negative-amount",
+      "binding": {
+        "amountMinor": -9223372036854775808,
+        "context": "",
+        "currency": "GHS",
+        "feeMinor": -1,
+        "payee": "b",
+        "payer": "a",
+        "reference": "r"
+      },
+      "digest": "040580c1b0019f58063f3b5aaeb3530faf0733b26956bb7222a0b63d0947c886"
+    }
+  ],
+  "credential": {
+    "payload": {
+      "v": "bounded-authority/1",
+      "jti": "cred-vector-1",
+      "iss": "issuer.example",
+      "sub": "user:alice",
+      "method": "passkey",
+      "binding": "bb6a5d9109501e24d6535273a819ffcf393f45398ab979b80ba683f2ed30b244",
+      "iat": 1700000000,
+      "exp": 1700000120
+    },
+    "credential": "eyJ2IjoiYm91bmRlZC1hdXRob3JpdHkvMSIsImp0aSI6ImNyZWQtdmVjdG9yLTEiLCJpc3MiOiJpc3N1ZXIuZXhhbXBsZSIsInN1YiI6InVzZXI6YWxpY2UiLCJtZXRob2QiOiJwYXNza2V5IiwiYmluZGluZyI6ImJiNmE1ZDkxMDk1MDFlMjRkNjUzNTI3M2E4MTlmZmNmMzkzZjQ1Mzk4YWI5NzliODBiYTY4M2YyZWQzMGIyNDQiLCJpYXQiOjE3MDAwMDAwMDAsImV4cCI6MTcwMDAwMDEyMH0.iWZI82DSZk8G2Ka03r9gBUeVUPh-ZmD_ooXqKu6NyW07VeXNsLBm8E6ShvmByOgPVAWLYeSjlwpDC8SMUZX3Cw"
+  },
+  "receipt": {
+    "receipt": {
+      "id": "rcpt-vector-1",
+      "reference": "txn-0001",
+      "issuedAt": "2023-11-14T22:13:21Z",
+      "effectId": "je-vector-1",
+      "payer": "wallet:alice",
+      "payee": "wallet:bob",
+      "amountMinor": 50000,
+      "feeMinor": 250,
+      "currency": "GHS",
+      "description": "Rent",
+      "grantId": "cred-vector-1",
+      "method": "passkey",
+      "binding": "bb6a5d9109501e24d6535273a819ffcf393f45398ab979b80ba683f2ed30b244",
+      "contentHash": "42d1d4684640421a6922358e015ba9241fb7f4b9efe0abe1045fd59b1513b095"
+    },
+    "contentHash": "42d1d4684640421a6922358e015ba9241fb7f4b9efe0abe1045fd59b1513b095"
+  }
+}
