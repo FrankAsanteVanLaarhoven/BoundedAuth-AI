@@ -247,4 +247,6 @@ the same suite an outside adopter would run.
 
 ## Licence
 
-Not yet assigned — all rights reserved by default. Contact the author for terms.
+[Apache License 2.0](LICENSE) — permissive, with an explicit patent grant. See
+[NOTICE](NOTICE) for attribution and [SECURITY.md](SECURITY.md) for how to report
+a vulnerability.
