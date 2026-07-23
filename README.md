@@ -214,6 +214,7 @@ than one that admits them.
 
 | Document | What it is |
 | --- | --- |
+| **[MANUSCRIPT.md](MANUSCRIPT.md)** | The engineering-research record: hypothesis → failures → refinement → evidence, plus governance, KPIs, risk, reproducibility, and an honest validation/certification status |
 | **[ARCHITECTURE.md](ARCHITECTURE.md)** | Components, the authorise sequence, the trust boundary, the conformance model, adoption topology |
 | **[SPEC.md](SPEC.md)** | Normative wire format, digest construction, verification steps, receipt rules — precise enough to reimplement from |
 | **[ADOPTION.md](ADOPTION.md)** | How to put it into a system that already moves money: the five decisions, integration steps, migration, operations, and the ways to get it wrong |
