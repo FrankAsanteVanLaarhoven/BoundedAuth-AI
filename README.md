@@ -245,8 +245,15 @@ ledger, which makes it the implementation most likely to be assumed correct and
 least likely to be tested against the thing it inspired — so it is now judged by
 the same suite an outside adopter would run.
 
+## Contributing
+
+Pull requests are welcome under the rules in [CONTRIBUTING.md](CONTRIBUTING.md) —
+the core stays dependency-free, every claimed property ships with a failing-first
+test, and the conformance suite is the contract. Report vulnerabilities privately
+via [SECURITY.md](SECURITY.md), never a public issue.
+
 ## Licence
 
 [Apache License 2.0](LICENSE) — permissive, with an explicit patent grant. See
-[NOTICE](NOTICE) for attribution and [SECURITY.md](SECURITY.md) for how to report
-a vulnerability.
+[NOTICE](NOTICE) for attribution, [TRADEMARKS.md](TRADEMARKS.md) for name use, and
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for dependency licences.
